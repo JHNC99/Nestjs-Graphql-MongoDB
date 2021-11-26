@@ -5,15 +5,10 @@ import { LessonService } from './lesson.service';
 @Resolver((of) => LessonType)
 export class LessonResolver {
   constructor(private lessonService: LessonService) {}
-  //Get data
+  //Get data for id
   @Query((returns) => LessonType)
-  lesson() {
-    return {
-      id: 'sajdjhashdaj',
-      name: 'Physics Class ',
-      startDate: new Date().toISOString(),
-      endDate: new Date().toISOString(),
-    };
+  lesson(@Args('id') id: string) {
+    return this.lessonService.getLesson(id);
   }
   //Create data
   @Mutation((returns) => LessonType)
